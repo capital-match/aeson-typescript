@@ -77,7 +77,12 @@ instance (TypeScript a, TypeScript b) => TypeScript (HashMap a b) where
   getTypeScriptType _ = [i|{[k: #{getTypeScriptType (Proxy :: Proxy a)}]: #{getTypeScriptType (Proxy :: Proxy b)}}|]
 
 instance (TypeScript a, TypeScript b) => TypeScript (Map a b) where
-  getTypeScriptType _ = [i|{[k: #{getTypeScriptType (Proxy :: Proxy a)}]: #{getTypeScriptType (Proxy :: Proxy b)}}|]
+  getTypeScriptType _ =
+    let key = case getTypeScriptType (Proxy :: Proxy a) of
+                   "string" -> "k: string"
+                   "number" -> "k: number"
+                   x        -> "k in " ++ x
+    in [i|{[#{key}]: #{getTypeScriptType (Proxy :: Proxy b)}}|]
 
 instance (TypeScript a) => TypeScript (Set a) where
   getTypeScriptType _ = getTypeScriptType (Proxy :: Proxy a) <> "[]";
