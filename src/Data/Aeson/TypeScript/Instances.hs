@@ -11,6 +11,7 @@ import Data.Data
 import Data.HashMap.Strict
 import Data.Map
 import Data.Monoid
+import Data.Ratio
 import Data.Set
 import Data.String.Interpolate.IsString
 import qualified Data.Text as T
@@ -86,3 +87,8 @@ instance (TypeScript a, TypeScript b) => TypeScript (Map a b) where
 
 instance (TypeScript a) => TypeScript (Set a) where
   getTypeScriptType _ = getTypeScriptType (Proxy :: Proxy a) <> "[]";
+
+instance TypeScript Rational where
+  getTypeScriptType _ = "Rational"
+  getTypeScriptDeclarations _ = [TSTypeAlternatives "Rational" [] ["IRational"], TSInterfaceDeclaration "IRational" [] [TSField False "numerator" "number"
+                                                                                                                       ,TSField False "denominator" "number"]]
