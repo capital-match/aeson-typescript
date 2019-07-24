@@ -1,8 +1,10 @@
--- This file has been generated from package.yaml by hpack version 0.27.0.
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.2.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 584dc98efdc24fed1334c7b9416994f4761d75469c68b28194194371c53b30f2
+-- hash: ccc989fae0429b61f44abf55239bbb9d716afb8590140caf6e31e455941d048c
 
 name:           aeson-typescript
 version:        0.2.1.0
@@ -18,15 +20,13 @@ license:        BSD3
 license-file:   LICENSE
 tested-with:    GHC == 7.6.3, GHC == 7.8.4, GHC == 7.10.2
 build-type:     Simple
-cabal-version:  >= 1.10
-
 extra-source-files:
-    ChangeLog.md
     README.md
-    test/assets/npm_install.sh
+    ChangeLog.md
     test/assets/package.json
-    test/assets/yarn.lock
+    test/assets/npm_install.sh
     test/assets/yarn_install.sh
+    test/assets/yarn.lock
 
 source-repository head
   type: git
@@ -61,6 +61,7 @@ test-suite aeson-typescript-test
       HigherKind
       ObjectWithSingleFieldNoTagSingleConstructors
       ObjectWithSingleFieldTagSingleConstructors
+      ObjectWithSingleFieldUnwrapUnaryRecords
       TaggedObjectNoTagSingleConstructors
       TaggedObjectTagSingleConstructors
       TestBoilerplate
