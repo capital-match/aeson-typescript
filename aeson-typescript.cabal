@@ -7,7 +7,7 @@ cabal-version: 1.12
 -- hash: ccc989fae0429b61f44abf55239bbb9d716afb8590140caf6e31e455941d048c
 
 name:           aeson-typescript
-version:        0.2.1.0
+version:        0.2.1.1
 synopsis:       Generate TypeScript definition files from your ADTs
 description:    Please see the README on Github at <https://github.com/codedownio/aeson-typescript#readme>
 category:       Text, Web, JSON
@@ -48,6 +48,7 @@ library
     , containers
     , interpolate
     , mtl
+    , strict-base-types
     , template-haskell
     , text
     , th-abstraction <0.4

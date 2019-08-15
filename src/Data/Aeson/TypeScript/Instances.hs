@@ -10,6 +10,7 @@ import Data.Aeson.TypeScript.Types
 import Data.Data
 import Data.HashMap.Strict
 import Data.Map
+import qualified Data.Maybe.Strict as S
 import Data.Monoid
 import Data.Ratio
 import Data.Set
@@ -68,6 +69,10 @@ instance (TypeScript a, TypeScript b, TypeScript c, TypeScript d) => TypeScript 
   getTypeScriptType _ = [i|[#{getTypeScriptType (Proxy :: Proxy a)}, #{getTypeScriptType (Proxy :: Proxy b)}, #{getTypeScriptType (Proxy :: Proxy c)}, #{getTypeScriptType (Proxy :: Proxy d)}]|]
 
 instance (TypeScript a) => TypeScript (Maybe a) where
+  getTypeScriptType _ = getTypeScriptType (Proxy :: Proxy a)
+  getTypeScriptOptional _ = True
+
+instance (TypeScript a) => TypeScript (S.Maybe a) where
   getTypeScriptType _ = getTypeScriptType (Proxy :: Proxy a)
   getTypeScriptOptional _ = True
 
