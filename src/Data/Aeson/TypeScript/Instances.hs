@@ -9,6 +9,7 @@ import qualified Data.Aeson as A
 import Data.Aeson.TypeScript.Types
 import Data.Data
 import Data.HashMap.Strict
+import Data.List.NonEmpty (NonEmpty)
 import Data.Map
 import qualified Data.Maybe.Strict as S
 import Data.Monoid
@@ -49,7 +50,13 @@ instance TypeScript Char where
 instance {-# OVERLAPPABLE #-} (TypeScript a) => TypeScript [a] where
   getTypeScriptType _ = (getTypeScriptType (Proxy :: Proxy a)) ++ "[]"
 
+instance {-# OVERLAPPABLE #-} (TypeScript a) => TypeScript (NonEmpty a) where
+  getTypeScriptType _ = (getTypeScriptType (Proxy :: Proxy a)) ++ "[]"
+
 instance {-# OVERLAPPING #-} TypeScript [Char] where
+  getTypeScriptType _ = "string"
+
+instance {-# OVERLAPPING #-} TypeScript (NonEmpty Char) where
   getTypeScriptType _ = "string"
 
 instance (TypeScript a, TypeScript b) => TypeScript (Either a b) where
