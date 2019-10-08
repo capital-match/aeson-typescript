@@ -75,6 +75,14 @@ instance (TypeScript a, TypeScript b, TypeScript c) => TypeScript (a, b, c) wher
 instance (TypeScript a, TypeScript b, TypeScript c, TypeScript d) => TypeScript (a, b, c, d) where
   getTypeScriptType _ = [i|[#{getTypeScriptType (Proxy :: Proxy a)}, #{getTypeScriptType (Proxy :: Proxy b)}, #{getTypeScriptType (Proxy :: Proxy c)}, #{getTypeScriptType (Proxy :: Proxy d)}]|]
 
+instance (TypeScript a, TypeScript b, TypeScript c, TypeScript d, TypeScript e) => TypeScript (a, b, c, d, e) where
+  getTypeScriptType _ = [i|[#{getTypeScriptType (Proxy :: Proxy a)}
+                           , #{getTypeScriptType (Proxy :: Proxy b)}
+                           , #{getTypeScriptType (Proxy :: Proxy c)}
+                           , #{getTypeScriptType (Proxy :: Proxy d)}
+                           , #{getTypeScriptType (Proxy :: Proxy e)}
+                           ]|]
+
 instance (TypeScript a) => TypeScript (Maybe a) where
   getTypeScriptType _ = getTypeScriptType (Proxy :: Proxy a)
   getTypeScriptOptional _ = True
