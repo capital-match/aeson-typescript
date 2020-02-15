@@ -59,6 +59,7 @@ test-suite aeson-typescript-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
+      Formatting
       HigherKind
       ObjectWithSingleFieldNoTagSingleConstructors
       ObjectWithSingleFieldTagSingleConstructors
@@ -92,6 +93,7 @@ test-suite aeson-typescript-test
     , interpolate
     , mtl
     , process
+    , strict-base-types
     , template-haskell
     , temporary
     , text
